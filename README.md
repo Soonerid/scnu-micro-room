@@ -10,7 +10,7 @@
 
 ## 给舍友的三步说明
 
-1. 从本仓库 **Releases** 下载 `微格预约助手共享版.zip`，**全部解压**到一个准备长期保留的文件夹。
+1. 从本仓库 **Releases** 下载 [Windows 安装包 ZIP](https://github.com/BoxunYang/scnu-micro-room/releases/latest/download/scnu-micro-room-windows.zip)，**全部解压**到一个准备长期保留的文件夹。
 2. 双击 **`Install-and-Open.cmd`**。第一次会准备 Node.js 运行环境、创建桌面快捷方式并打开面板；如需下载，只从 [Node.js 官方下载站](https://nodejs.org/en/download)获取并校验 SHA-256。
 3. 填写**自己的学校统一认证账号和密码**并验证，选择真正需要的校区、日期和时段，再启用自动预约。首次安装默认暂停，不会填完账号就直接占位。
 
