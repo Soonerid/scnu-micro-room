@@ -1,0 +1,9 @@
+{
+  "name": "scnu-micro-room",
+  "version": "1.0.0",
+  "private": true,
+  "description": "按需预约，发现空位，让微格教室得到更好的利用。",
+  "engines": { "node": ">=22" },
+  "scripts": { "start": "node server.js", "test": "node --test test/*.test.cjs" },
+  "license": "MIT"
+}

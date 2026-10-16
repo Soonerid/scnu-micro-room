@@ -1,0 +1,21 @@
+# All personal runtime state stays outside this repository.
+*.dpapi
+*.csv
+*.log
+.env*
+!.env.example
+config.json
+session.json
+journal.json
+events.json
+last-result.json
+release-result.json
+surplus-result.json
+notification*.json
+observations/
+exports/
+runtime/
+node_modules/
+work/
+*.zip
+*.tmp

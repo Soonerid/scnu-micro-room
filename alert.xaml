@@ -1,0 +1,84 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="微格预约助手 · 静音提醒" Width="404" SizeToContent="Height"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="NoResize" WindowStartupLocation="Manual" ShowInTaskbar="False"
+        ShowActivated="False" Topmost="True" FontFamily="Microsoft YaHei UI" Opacity="0">
+  <Window.Resources>
+    <Style x:Key="ActionButton" TargetType="Button">
+      <Setter Property="Height" Value="36"/><Setter Property="FontSize" Value="12"/>
+      <Setter Property="FontWeight" Value="SemiBold"/><Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Background" Value="#7855D8"/><Setter Property="Foreground" Value="White"/>
+      <Setter Property="BorderBrush" Value="#7855D8"/><Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Template"><Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Border x:Name="buttonBorder" CornerRadius="10" Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="buttonBorder" Property="Opacity" Value="0.86"/></Trigger>
+            <Trigger Property="IsPressed" Value="True"><Setter TargetName="buttonBorder" Property="Opacity" Value="0.7"/></Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="buttonBorder" Property="BorderThickness" Value="2"/></Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value></Setter>
+    </Style>
+    <Style x:Key="CloseButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+      <Setter Property="Width" Value="26"/><Setter Property="Height" Value="26"/>
+      <Setter Property="Background" Value="Transparent"/><Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Foreground" Value="#9A91A8"/><Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+      <Setter Property="FontSize" Value="11"/>
+    </Style>
+  </Window.Resources>
+  <Border Margin="10" CornerRadius="18" Background="#FFFEFF" BorderBrush="#E9E2F2" BorderThickness="1" Padding="20">
+    <Border.Effect><DropShadowEffect Color="#352A45" BlurRadius="16" ShadowDepth="3" Opacity="0.12"/></Border.Effect>
+    <StackPanel>
+      <Grid Margin="0,0,0,16">
+        <Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/><ColumnDefinition Width="30"/></Grid.ColumnDefinitions>
+        <Image x:Name="brandIcon" Width="28" Height="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <StackPanel Grid.Column="1">
+          <TextBlock Text="微格预约助手" FontSize="10" Foreground="#94899E" Margin="0,0,0,3"/>
+          <TextBlock x:Name="heading" Text="教室预约已确认" FontSize="17" FontWeight="SemiBold" Foreground="#352A45"/>
+        </StackPanel>
+        <Button x:Name="close" Grid.Column="2" Content="&#xE711;" Style="{StaticResource CloseButton}"
+                VerticalAlignment="Top" ToolTip="关闭提醒" AutomationProperties.Name="关闭提醒"/>
+      </Grid>
+      <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="220" HorizontalScrollBarVisibility="Disabled">
+        <ItemsControl x:Name="reservations">
+          <ItemsControl.ItemTemplate><DataTemplate>
+            <Border CornerRadius="12" Background="#F6F2FC" Padding="13" Margin="0,0,0,8">
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="51"/><ColumnDefinition Width="13"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                  <TextBlock Text="{Binding Day}" FontSize="26" FontWeight="SemiBold" Foreground="#7855D8" HorizontalAlignment="Center"/>
+                  <TextBlock Text="{Binding MonthWeek}" FontSize="10" Foreground="#9A8BAD" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                </StackPanel>
+                <Border Grid.Column="1" Width="1" Background="#E5DCEE" Margin="0,4"/>
+                <StackPanel Grid.Column="2">
+                  <TextBlock Text="{Binding Room}" FontSize="15" FontWeight="SemiBold" Foreground="#3C304A" TextWrapping="Wrap"/>
+                  <TextBlock Text="{Binding Building}" FontSize="10" Foreground="#9A8BAD" Margin="0,3,0,6" TextWrapping="Wrap"/>
+                  <TextBlock Text="{Binding Times}" FontFamily="Segoe UI" FontSize="16" FontWeight="SemiBold" Foreground="#584267" TextWrapping="Wrap"/>
+                  <TextBlock Text="{Binding Summary}" FontSize="10" Foreground="#8F79AC" Margin="0,6,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+              </Grid>
+            </Border>
+          </DataTemplate></ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ScrollViewer>
+      <TextBlock x:Name="extra" FontSize="11" Foreground="#A36D3D" TextWrapping="Wrap" Margin="0,0,0,8" Visibility="Collapsed"/>
+      <Border CornerRadius="10" Background="#FFF8EF" Padding="11,9" Margin="0,6,0,14">
+        <StackPanel>
+          <TextBlock Text="记得准时到场签到" FontSize="11" FontWeight="SemiBold" Foreground="#9D7047"/>
+          <TextBlock Text="公告要求开始后10分钟内签到。&#xA;第一节缺席，后续节次也会受影响。" FontSize="10" Foreground="#B19274" LineHeight="16" Margin="0,4,0,0"/>
+        </StackPanel>
+      </Border>
+      <Grid>
+        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="10"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+        <Button x:Name="open" Content="查看预约" Style="{StaticResource ActionButton}" Background="#FFFEFF" Foreground="#786987" BorderBrush="#E7DEEF"/>
+        <Button x:Name="ack" Grid.Column="2" Content="知道了" Style="{StaticResource ActionButton}"/>
+      </Grid>
+      <TextBlock x:Name="footnote" Text="静音提醒 · 确认收到不等于完成签到" FontSize="9" Foreground="#ABA2B3" HorizontalAlignment="Center" Margin="0,11,0,0"/>
+    </StackPanel>
+  </Border>
+</Window>
