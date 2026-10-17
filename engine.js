@@ -170,8 +170,9 @@ class Engine {
     return this.config.enabled && delta >= -90000 && delta < RELEASE_WINDOW && !this.journal.days[today];
   }
   publicState() {
-    const nextRelease = this.nextRun(), nextSurplus = this.nextSurplusAt();
-    return { ...this.state, busy: this.state.busy || Boolean(this.surplusRunning), config: this.config, serverNow: this.now(), nextRun: nextRelease,
+    const now = this.now(), nextRelease = this.nextRun(), nextSurplus = this.nextSurplusAt();
+    return { ...this.state, records: this.state.records.filter(r => stamp(r.date, r.end) > now),
+      busy: this.state.busy || Boolean(this.surplusRunning), config: this.config, serverNow: now, nextRun: nextRelease,
       nextAction: { time: Math.min(nextRelease, nextSurplus ?? Infinity), label: nextSurplus != null && nextSurplus < nextRelease ? '余位检查' : '放号预约' },
       schedule: { releaseMinutes: RELEASE_WINDOW / 60000, daytime: '09:00—18:00', daytimeIntervalMinutes: 10, evening: '20:20—24:00', eveningIntervalMinutes: 5, leadMinutes: 30,
         surplusDates: this.config.mode === 'date' ? [this.config.date] : this.state.rules?.maxDays ? Array.from({ length: this.state.rules.maxDays + Number(this.now() >= stamp(chinaDate(this.now()), String(this.state.rules.releaseHour).padStart(2, '0') + ':00')) }, (_, i) => addDays(chinaDate(this.now()), i)) : [] },

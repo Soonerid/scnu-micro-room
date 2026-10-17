@@ -88,5 +88,5 @@ function createApp({ dataDir = path.join(process.env.LOCALAPPDATA, 'SCNU-MicroRo
     stop() { intervals.forEach(clearInterval); server.closeAllConnections(); return new Promise(resolve => server.close(resolve)); }
   };
 }
-if (require.main === module) createApp().start().catch(error => { if (error.code !== 'EADDRINUSE') console.error('助手启动失败，请重新运行安装并打开.cmd'); process.exit(error.code === 'EADDRINUSE' ? 0 : 1); });
+if (require.main === module) createApp().start().catch(error => { if (error.code !== 'EADDRINUSE') console.error('助手启动失败，请重新双击“打开预约助手.cmd”'); process.exit(error.code === 'EADDRINUSE' ? 0 : 1); });
 module.exports = { createApp };
