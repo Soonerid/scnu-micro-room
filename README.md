@@ -4,7 +4,7 @@
 
 面向有微格练习需要的华南师范大学同学，欢迎同门、师兄师姐、师弟师妹按需使用、分享。发现空闲教室、安排个人练习；请勿囤积课室、批量占位或预约过长时间。
 
-**[下载 Windows 版 ZIP](https://github.com/BoxunYang/scnu-micro-room/releases/latest/download/scnu-micro-room-windows.zip)** · 支持 Windows 10/11
+**[下载 Windows 版 ZIP](https://github.com/Soonerid/scnu-micro-room/releases/latest/download/scnu-micro-room-windows.zip)** · 支持 Windows 10/11
 
 ## 开始使用
 
